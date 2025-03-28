@@ -1,0 +1,325 @@
+.hero {
+    width: 100%;
+    min-height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 30px;
+}
+.sliderContainer {
+    width: 69%;
+    height: 350px;
+}
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+.swiperSlider {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+}
+.swiperContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.heroImages {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.textContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.textInfo {
+    width: 90%;
+    height: 50px;
+    border-radius: 8px;
+    background-color: rgba(184, 0, 0, 0.274);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.textInfo p {
+    color: black;
+    font-size: 25px;
+}
+
+.bannerContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+.banner {
+    width: 90%;
+    min-height: 200px;
+    background-color: #38b98e34;
+    border-radius: 8px;
+}
+.bannerHeader {
+    width: 100%;
+    height: 40px;
+    background-color: #1C82AD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px 8px 0px 0px;
+    padding: 30px 0;
+}
+.bannerHeader h2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+.bannerHeader h2 span span {
+    display: inline;
+    width: 200px;
+    background-color: white;
+    color: #0078ac;
+    padding: 5px;
+    border-radius: 28px;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2%;
+}
+.info {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+}
+.info h2 {
+    font-size: 35px;
+    color: #0078ac;
+}
+.info p {
+    color: #0e4157;
+    font-size: 20px;
+}
+.info button {
+    width: 150px;
+    font-size: 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: #38b98e;
+    color: white;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.info button span:first-child {
+    font-size: 20px;
+}
+.roshitaImage {
+    width: 200px;
+    height: 200px;
+}
+
+.categorieContainer {
+    width: 100%;
+    min-height: fit-content;
+}
+.title {
+    width: 100%;
+    padding: 0 4%;
+}
+.title h2 {
+    font-size: 30px;
+    color: black;
+}
+.categorieContent {
+    width: 100%;
+    min-height: fit-content;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    padding: 30px 0;
+}
+.categorieCard {
+    width: 100px;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+}
+.cardHeader {
+    background-color: rgb(224, 224, 224);
+    border-radius: 8px;
+}
+.categorieImage {
+    width: 100px;
+    height: 100px;
+}
+.cardBody {
+    text-align: center;
+}
+.categorieLink {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+.categorieLink:hover {
+    color: #38b98e;
+}
+.products {
+    width: 100%;
+    min-height: fit-content;
+    padding: 30px 4%;
+}
+.productsTitle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+.productsTitle h2 {
+    font-size: 30px;
+    color: black;
+}
+.titleLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: 2px solid #38b98e;
+    border-radius: 8px;
+    color: #38b98e;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    transition: .3s;
+}
+.titleLink:hover {
+    background-color: #38b98e;
+    color: white;
+}
+.cardLink {
+    text-decoration: none;
+}
+.productsCard {
+    width: 200px;
+    height: fit-content;
+    border-radius: 8px;
+    transition: .3s;
+}
+.productsCard:hover {
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.8);
+}
+.productsCard .cardHeader {
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.productsCard .cardBody {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 10px;
+}
+.productsCard .cardBody p {
+    color: black;
+    font: 17px;
+}
+.productsCard .cardBody h3 {
+    color: black;
+}
+.productsCard .cardBody button {
+    font-size: 25px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    background-color: #38b98e;
+    padding: 5px;
+    cursor: pointer;
+}
+
+@media(max-width: 1050px) {
+    .hero {
+        align-items: start;
+    }
+    .sliderContainer {
+        width: 80%;
+        height: 250px;
+    }
+    .heroImages {
+        display: none;
+    }
+    .banner {
+        min-height: 150px;
+    }
+    .content {
+        padding: 30px 2%;
+    }
+    .info h2 {
+        font-size: 20px;
+    }
+    .info p {
+        font-size: 18px;
+    }
+    .roshitaImage {
+        width: 100px;
+        height: 100px;
+    }
+}
+@media(max-width: 767px) {
+    .sliderContainer {
+        width: 90%;
+        height: 140px;
+    }
+    .content {
+        flex-direction: column-reverse;
+        padding: 30px 0;
+    }
+    .info {
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .textInfo {
+        padding: 30px 10px;
+    }
+    .textInfo p {
+        font-size: 18px;
+    }
+    .productsTitle h2 {
+        font: 20px;
+    }
+    .titleLink {
+        font-size: 19px;
+    }
+}
