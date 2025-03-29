@@ -13,7 +13,7 @@ function Loading() {
     useEffect(() => {
         gsap.fromTo(textOneRef.current, {opacity: 0, y: 20}, {opacity: 1, y: 0, delay: .5, duration: 1})
         gsap.fromTo(textTwoRef.current, {opacity: 0, y: 20}, {opacity: 1, y: 0, delay: 1, duration: 1})
-        gsap.fromTo(loadingRef.current, {y: 0}, {y: -1000, delay: 2, duration: 1})
+        gsap.fromTo(loadingRef.current, {y: 0}, {y: -1000, delay: 3.5, duration: 1})
     } ,[])
 
     return(
