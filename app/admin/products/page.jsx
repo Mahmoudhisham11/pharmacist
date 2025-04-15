@@ -8,7 +8,7 @@ import logo from "../../../public/images/images medical.png"
 import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
 import { db } from "@/app/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 
 
 function Products() {
@@ -22,6 +22,11 @@ function Products() {
         }
         getAllProducts()
     }, [])
+
+    const handleDelete = async(id) => {
+        const delValue = doc(collection(db, "products"), id)
+        await deleteDoc(delValue)
+    }
 
     return(
         <div className="main">
@@ -48,7 +53,7 @@ function Products() {
                                 <p>{product.name}</p>
                                 <strong>{product.price}</strong>
                             </div>
-                            <button className={styles.btn}>حذف</button>
+                            <button className={styles.btn} onClick={() => handleDelete(product.id)}>حذف</button>
                         </div>
                     </div>
                 )

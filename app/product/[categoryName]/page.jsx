@@ -32,7 +32,7 @@ function CategoryName ({params}) {
                 <div className={styles.categoryTitle}>
                     <h2>{categoryName}</h2>
                 </div>
-                <div className={styles.category}>
+                <div className={styles.categoryContent}>
                     {products.map(product => {
                         return(
                             <div className="card" key={product.id}>

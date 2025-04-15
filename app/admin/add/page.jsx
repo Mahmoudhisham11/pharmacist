@@ -74,15 +74,15 @@ function Add() {
                 </div>
                 <div className="inputContainer">
                     <label>اسم المنتج :</label>
-                    <input type="text" onChange={(e) => setName(e.target.value)}/>
+                    <input value={name} type="text" onChange={(e) => setName(e.target.value)}/>
                 </div>
                 <div className="inputContainer">
                     <label>وصف المنتج :</label>
-                    <input type="text" onChange={(e) => setDescription(e.target.value)}/>
+                    <input value={description} type="text" onChange={(e) => setDescription(e.target.value)}/>
                 </div>
                 <div className="inputContainer">
                     <label>سعر المنتج :</label>
-                    <input type="number" onChange={(e) => setPrice(e.target.value)}/>
+                    <input value={price} type="number" onChange={(e) => setPrice(e.target.value)}/>
                 </div>
                 <div className="inputContainer">
                     <label>تصنيف المنتج :</label>
