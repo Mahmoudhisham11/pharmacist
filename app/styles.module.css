@@ -384,7 +384,7 @@
         display: none;
     }
     .banner {
-        height: 200px;
+        height: 230px;
         overflow: hidden;
     }
     .bannerHeader {
@@ -435,7 +435,7 @@
         font-size: 18px;
     }
     .productsTitle h2 {
-        font: 20px;
+        font: 16px;
     }
     .titleLink {
         font-size: 19px;
@@ -452,6 +452,9 @@
     }
     .card p {
         font-size: 25px;
+    }
+    .btn {
+        font-size: 18px;
     }
     .cardImage {
         width: 80px;
