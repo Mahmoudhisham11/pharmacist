@@ -23,46 +23,72 @@ import map from "../public/images/map.gif"
 import medicine from "../public/images/medicine (1).gif"
 import snack from "../public/images/snacke.gif"
 import chat from "../public/images/chat.gif"
+import bnadol1 from "../public/images/bnadol1.PNG"
+import momImage from "../public/images/mom1.PNG"
+import heareCare from "../public/images/heareCare1.PNG"
+import skenCare from "../public/images/skenCare1.PNG"
+import dayleCare from "../public/images/dayleCare1.PNG"
+import makeup from "../public/images/makeup1.PNG"
+import sub from "../public/images/sub1.PNG"
 import { FaMarker } from "react-icons/fa";
+import Footer from "./components/Footer/page";
+import { db } from "./firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 export default function Home() {
+  const productsCollection = collection(db, "products")
   const [openNav, setOpenNav] = useState(false)
-  const [products, setProducts] = useState([
+  const [products, setProducts] = useState([])
+  const [sections, setSections] = useState([
     {
       id: 1,
-      description: "دولي بران مسكن فعال للالم",
-      price: 280,
-      image: logoImage
+      text: "الادوية",
+      image: bnadol1
     },
     {
       id: 2,
-      description: "دولي بران مسكن فعال للالم",
-      price:380,
-      image: logoImage
+      text: "العناية بالشعر",
+      image: heareCare
     },
     {
       id: 3,
-      description: "دولي بران مسكن فعال للالم",
-      price: 120,
-      image: logoImage
+      text: "العناية بالبشرة",
+      image: skenCare
     },
     {
       id: 4,
-      description: "دولي بران مسكن فعال للالم",
-      price: 10,
-      image: logoImage
+      text: "العناية اليومية",
+      image: dayleCare
     },
     {
       id: 5,
-      description: "دولي بران مسكن فعال للالم",
-      price: 180,
-      image: logoImage
+      text: "الام و الطفل",
+      image: momImage
+    },
+    {
+      id: 6,
+      text: "المكياج و الاكسسوارات",
+      image: makeup
+    },
+    {
+      id: 6,
+      text: "الفيتامينات و المكملات",
+      image: sub
     },
   ])
+  
+  useEffect(() => {
+    const getAllProducts = async() => {
+      const productsSnapshot = await getDocs(productsCollection)
+      const productsList = productsSnapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+      setProducts(productsList)
+    }
+    getAllProducts()
+  }, [productsCollection])
 
   return (
       <main className="main">
-        <Loading/>
+        {/* <Loading/> */}
         <Nav openNav={openNav} setOpenNav={setOpenNav}/>
         <Header openNav={openNav} setOpenNav={setOpenNav}/>
         <section className={styles.hero}>
@@ -130,299 +156,66 @@ export default function Home() {
             <h2>الاقسام</h2>
           </div>
           <div className={styles.categorieContent}>
-            <div className={styles.categorieCard}>
-              <div className={styles.cardHeader}>
-                <Image src={logoImage} className={styles.categorieImage} alt="logoImage"/>
+            {sections.map(section => {
+              return (
+              <div className={styles.categorieCard} key={section.id}>
+                <div className={styles.cardHeader}>
+                  <Image src={section.image} className={styles.categorieImage} alt="logoImage"/>
+                </div>
+                <div className={styles.cardBody}>
+                  <Link href={`/product/${section.text}`} className={styles.categorieLink}>{section.text}</Link>
+                </div>
               </div>
-              <div className={styles.cardBody}>
-                <Link href="/" className={styles.categorieLink}>الادوية</Link>
-              </div>
-            </div>
-            <div className={styles.categorieCard}>
-              <div className={styles.cardHeader}>
-                <Image src={logoImage} className={styles.categorieImage} alt="logoImage"/>
-              </div>
-              <div className={styles.cardBody}>
-                <Link href="/" className={styles.categorieLink}>العناية بالشعر</Link>
-              </div>
-            </div>
-            <div className={styles.categorieCard}>
-              <div className={styles.cardHeader}>
-                <Image src={logoImage} className={styles.categorieImage} alt="logoImage"/>
-              </div>
-              <div className={styles.cardBody}>
-                <Link href="/" className={styles.categorieLink}>العناية بالبشرة</Link>
-              </div>
-            </div>
-            <div className={styles.categorieCard}>
-              <div className={styles.cardHeader}>
-                <Image src={logoImage} className={styles.categorieImage} alt="logoImage"/>
-              </div>
-              <div className={styles.cardBody}>
-                <Link href="/" className={styles.categorieLink}>العناية اليومية</Link>
-              </div>
-            </div>
-            <div className={styles.categorieCard}>
-              <div className={styles.cardHeader}>
-                <Image src={logoImage} className={styles.categorieImage} alt="logoImage"/>
-              </div>
-              <div className={styles.cardBody}>
-                <Link href="/" className={styles.categorieLink}>الام و الطفل</Link>
-              </div>
-            </div>
-            <div className={styles.categorieCard}>
-              <div className={styles.cardHeader}>
-                <Image src={logoImage} className={styles.categorieImage} alt="logoImage"/>
-              </div>
-              <div className={styles.cardBody}>
-                <Link href="/" className={styles.categorieLink}>المكياج و الاكسسوارات</Link>
-              </div>
-            </div>
-            <div className={styles.categorieCard}>
-              <div className={styles.cardHeader}>
-                <Image src={logoImage} className={styles.categorieImage} alt="logoImage"/>
-              </div>
-              <div className={styles.cardBody}> 
-                <Link href="/" className={styles.categorieLink}>المستلزمات الطبية</Link>
-              </div>
-            </div>
-            <div className={styles.categorieCard}>
-              <div className={styles.cardHeader}>
-                <Image src={logoImage} className={styles.categorieImage} alt="logoImage"/>
-              </div>
-              <div className={styles.cardBody}>
-                <Link href="/" className={styles.categorieLink}>الفيتامينات و المكملات</Link>
-              </div>
-            </div>
-            <div className={styles.categorieCard}>
-              <div className={styles.cardHeader}>
-                <Image src={logoImage} className={styles.categorieImage} alt="logoImage"/>
-              </div>
-              <div className={styles.cardBody}>
-                <Link href="/" className={styles.categorieLink}>الصحة الجنسية</Link>
-              </div>
-            </div>
+              )
+            })}
           </div>
         </section>
-        <section className={styles.products}>
-          <div className={styles.productsTitle}>
-            <h2>ادوية مسكنة 💊</h2>
-            <Link href="/" className={styles.titleLink}>
-              <span>عرض الكل</span>
-              <span><IoIosArrowBack/></span>
-            </Link>
-          </div>
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={10}
-            slidesPerView={2}
-            navigation
-            breakpoints={{
-              640: {slidesPerView: 2},
-              768: {slidesPerView: 3},
-              1024: {slidesPerView: 4}
-            }}
-            className={styles.swiper}
-          >
-          {products.map(product => {
-            return(
-              <SwiperSlide className={styles.swiperSlider} key={product.id}>
-                  <div className={styles.productsCard}>
-                    <Link href={`/test/${product.id}`} className={styles.cardLink}>
-                      <div className={styles.cardHeader}>
-                        <Image src={product.image} className={styles.categorieImage} alt="logoImgae"/>
+        {sections.map(section => {
+          return(
+            <section className={styles.products} key={section.id}>
+              <div className={styles.productsTitle}>
+                <h2>{section.text}</h2>
+                <Link href={`/product/${section.text}`} className={styles.titleLink}>
+                  <span>عرض الكل</span>
+                  <span><IoIosArrowBack/></span>
+                </Link>
+              </div>
+              <Swiper
+                modules={[Navigation]}
+                spaceBetween={10}
+                slidesPerView={2}
+                navigation
+                breakpoints={{
+                  640: {slidesPerView: 2},
+                  768: {slidesPerView: 3},
+                  1024: {slidesPerView: 4}
+                }}
+                className={styles.swiper}
+              >
+              {products.filter((product) => product.type === section.text).map(product => {
+                return(
+                <SwiperSlide className={styles.swiperSlider} key={product.id}>
+                  <div className="card">
+                      <div className="cardHead">
+                        <Image src={product.image} fill style={{objectFit: "cover"}}  alt="logoImgae"/>
                       </div>
-                    </Link>
-                    <div className={styles.cardBody}>
-                      <p>{product.description}</p>
-                      <h3>{product.price} جنية</h3>
-                      <button>اضف الى العربة</button>
-                    </div>
-                  </div>
-              </SwiperSlide>
-            )
-          })}
-          </Swiper>
-        </section>
-        <section className={styles.products}>
-          <div className={styles.productsTitle}>
-            <h2>ادوية مسكنة 💊</h2>
-            <Link href="/" className={styles.titleLink}>
-              <span>عرض الكل</span>
-              <span><IoIosArrowBack/></span>
-            </Link>
-          </div>
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={10}
-            slidesPerView={2}
-            navigation
-            breakpoints={{
-              640: {slidesPerView: 2},
-              768: {slidesPerView: 3},
-              1024: {slidesPerView: 4}
-            }}
-            className={styles.swiper}
-          >
-          {products.map(product => {
-            return(
-              <SwiperSlide className={styles.swiperSlider} key={product.id}>
-                  <div className={styles.productsCard}>
-                    <Link href={`/test/${product.id}`} className={styles.cardLink}>
-                      <div className={styles.cardHeader}>
-                        <Image src={product.image} className={styles.categorieImage} alt="logoImgae"/>
+                      <div className="cardBody">
+                        <div className="bodyText">
+                          <Link href={"/"} className={styles.cardLink}>
+                            <p>{product.name}</p>
+                          </Link>
+                          <strong>{product.price} جنية</strong>
+                        </div>
+                        <button className={styles.btn}>اضف الى العربة</button>
                       </div>
-                    </Link>
-                    <div className={styles.cardBody}>
-                      <p>{product.description}</p>
-                      <h3>{product.price} جنية</h3>
-                      <button>اضف الى العربة</button>
-                    </div>
                   </div>
-              </SwiperSlide>
-            )
-          })}
-          </Swiper>
-        </section>
-        <section className={styles.products}>
-          <div className={styles.productsTitle}>
-            <h2>ادوية مسكنة 💊</h2>
-            <Link href="/" className={styles.titleLink}>
-              <span>عرض الكل</span>
-              <span><IoIosArrowBack/></span>
-            </Link>
-          </div>
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={10}
-            slidesPerView={2}
-            navigation
-            breakpoints={{
-              640: {slidesPerView: 2},
-              768: {slidesPerView: 3},
-              1024: {slidesPerView: 4}
-            }}
-            className={styles.swiper}
-          >
-          {products.map(product => {
-            return(
-              <SwiperSlide className={styles.swiperSlider} key={product.id}>
-                  <div className={styles.productsCard}>
-                    <Link href={`/test/${product.id}`} className={styles.cardLink}>
-                      <div className={styles.cardHeader}>
-                        <Image src={product.image} className={styles.categorieImage} alt="logoImgae"/>
-                      </div>
-                    </Link>
-                    <div className={styles.cardBody}>
-                      <p>{product.description}</p>
-                      <h3>{product.price} جنية</h3>
-                      <button>اضف الى العربة</button>
-                    </div>
-                  </div>
-              </SwiperSlide>
-            )
-          })}
-          </Swiper>
-        </section>
-        <section className={styles.products}>
-          <div className={styles.productsTitle}>
-            <h2>ادوية مسكنة 💊</h2>
-            <Link href="/" className={styles.titleLink}>
-              <span>عرض الكل</span>
-              <span><IoIosArrowBack/></span>
-            </Link>
-          </div>
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={10}
-            slidesPerView={2}
-            navigation
-            breakpoints={{
-              640: {slidesPerView: 2},
-              768: {slidesPerView: 3},
-              1024: {slidesPerView: 4}
-            }}
-            className={styles.swiper}
-          >
-          {products.map(product => {
-            return(
-              <SwiperSlide className={styles.swiperSlider} key={product.id}>
-                  <div className={styles.productsCard}>
-                    <Link href={`/test/${product.id}`} className={styles.cardLink}>
-                      <div className={styles.cardHeader}>
-                        <Image src={product.image} className={styles.categorieImage} alt="logoImgae"/>
-                      </div>
-                    </Link>
-                    <div className={styles.cardBody}>
-                      <p>{product.description}</p>
-                      <h3>{product.price} جنية</h3>
-                      <button>اضف الى العربة</button>
-                    </div>
-                  </div>
-              </SwiperSlide>
-            )
-          })}
-          </Swiper>
-        </section>
-        <section className={styles.products}>
-          <div className={styles.productsTitle}>
-            <h2>ادوية مسكنة 💊</h2>
-            <Link href="/" className={styles.titleLink}>
-              <span>عرض الكل</span>
-              <span><IoIosArrowBack/></span>
-            </Link>
-          </div>
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={10}
-            slidesPerView={2}
-            navigation
-            breakpoints={{
-              640: {slidesPerView: 2},
-              768: {slidesPerView: 3},
-              1024: {slidesPerView: 4}
-            }}
-            className={styles.swiper}
-          >
-          {products.map(product => {
-            return(
-              <SwiperSlide className={styles.swiperSlider} key={product.id}>
-                  <div className={styles.productsCard}>
-                    <Link href={`/test/${product.id}`} className={styles.cardLink}>
-                      <div className={styles.cardHeader}>
-                        <Image src={product.image} className={styles.categorieImage} alt="logoImgae"/>
-                      </div>
-                    </Link>
-                    <div className={styles.cardBody}>
-                      <p>{product.description}</p>
-                      <h3>{product.price} جنية</h3>
-                      <button>اضف الى العربة</button>
-                    </div>
-                  </div>
-              </SwiperSlide>
-            )
-          })}
-          </Swiper>
-        </section>
-        <section className={styles.prands}>
-          <div className={styles.productsTitle}>
-            <h2>الماركات</h2>
-          </div>
-          <div className={styles.prandsContent}>
-            <Link className={styles.prandLink} href={"/"}><Image src={logoImage} alt="logoImage" className={styles.categorieImage}/></Link>
-            <Link className={styles.prandLink} href={"/"}><Image src={logoImage} alt="logoImage" className={styles.categorieImage}/></Link>
-            <Link className={styles.prandLink} href={"/"}><Image src={logoImage} alt="logoImage" className={styles.categorieImage}/></Link>
-            <Link className={styles.prandLink} href={"/"}><Image src={logoImage} alt="logoImage" className={styles.categorieImage}/></Link>
-            <Link className={styles.prandLink} href={"/"}><Image src={logoImage} alt="logoImage" className={styles.categorieImage}/></Link>
-            <Link className={styles.prandLink} href={"/"}><Image src={logoImage} alt="logoImage" className={styles.categorieImage}/></Link>
-            <Link className={styles.prandLink} href={"/"}><Image src={logoImage} alt="logoImage" className={styles.categorieImage}/></Link>
-            <Link className={styles.prandLink} href={"/"}><Image src={logoImage} alt="logoImage" className={styles.categorieImage}/></Link>
-            <Link className={styles.prandLink} href={"/"}><Image src={logoImage} alt="logoImage" className={styles.categorieImage}/></Link>
-          </div>
-          <div className={styles.btnContainer}>
-            <Link href={"/"} className={styles.btnLink}>عرض الكل</Link>
-          </div>
-        </section>
+                </SwiperSlide>
+                )
+              })}
+              </Swiper>
+          </section>
+          )
+        })}
         <section className={styles.imagesContainer}>
           <div className={styles.imagesTitle}>
             <h2>نحن نغطي كل احتياجاتك من الصيدلية</h2>
@@ -714,47 +507,7 @@ export default function Home() {
             </Swiper>
           </div>
         </section>
-        <footer className={styles.footer}>
-          <div className={styles.top}>
-            <div className={styles.rightSide}>
-              <div className={styles.footerTitle}>
-                <Link href={"/"} className={styles.footerLink}>
-                  <span>
-                    <Image src={logoImage} className={styles.logoImage} alt="logo image"/>
-                  </span>
-                  <span>صيدلاني</span>
-                </Link>
-              </div>
-              <div className={styles.rightContent}>
-                <p>اطلب الان ادويتك من الصيدلية بسهولة اطلب ادويتك من صيدلية اونلاين في مصر</p>
-              </div>
-            </div>
-            <div className={styles.middleSide}>
-              <div className={styles.title}>
-                <h2>المزيد عنا</h2>
-              </div>
-              <div className={styles.middleContent}>
-                <Link href={"/"} className={styles.footerLinks}>عن صيدلاني</Link>
-                <Link href={"/"} className={styles.footerLinks}>المدونة</Link>
-                <Link href={"/"} className={styles.footerLinks}>تواصل معنا</Link>
-                <Link href={"/"} className={styles.footerLinks}>هل تملك صدلية؟</Link>
-              </div>
-            </div>
-            <div className={styles.leftSide}>
-              <div className={styles.title}>
-                <h2>سهلنا عليك</h2>
-              </div>
-              <div className={styles.middleContent}>
-                <Link href={"/"} className={styles.footerLinks}>ارسال الروشتة</Link>
-                <Link href={"/"} className={styles.footerLinks}>الروشتة الشهرية</Link>
-              </div>
-            </div>
-          </div>
-          <hr />
-          <div className={styles.bottom}>
-            <h2>&copy; - 2025 صيدلاني</h2>
-          </div>
-        </footer>
+        <Footer/>
       </main>
   );
 }

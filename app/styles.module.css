@@ -21,6 +21,7 @@
     padding: 10px 0;
 }
 .swiperContent {
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
@@ -67,7 +68,7 @@
 }
 .banner {
     width: 90%;
-    min-height: 200px;
+    height: 250px;
     background-color: #38b98e34;
     border-radius: 8px;
 }
@@ -225,46 +226,15 @@
 }
 .cardLink {
     text-decoration: none;
-}
-.productsCard {
-    width: 200px;
-    height: fit-content;
-    border-radius: 8px;
-    transition: .3s;
-}
-.productsCard:hover {
-    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.8);
-}
-.productsCard .cardHeader {
-    width: 100%;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.productsCard .cardBody {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 5px;
-    padding-bottom: 10px;
-}
-.productsCard .cardBody p {
-    color: black;
-    font: 17px;
-}
-.productsCard .cardBody h3 {
     color: black;
 }
-.productsCard .cardBody button {
-    font-size: 25px;
-    border-radius: 8px;
+.btn {
+    width: 80%;
     border: none;
+    font-size: 25px;
     color: white;
     background-color: #38b98e;
-    padding: 5px;
+    border-radius: 8px;
     cursor: pointer;
 }
 .prands {
@@ -340,16 +310,16 @@
     flex-direction: column;
 }
 .card h2 {
-    font-size: 50px;
+    font-size: 30px;
     color: black;
 }
 .card p {
-    font-size: 50px;
+    font-size: 30px;
     color: black;
 }
 .cardImage {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
 }
 .reviews {
     width: 100%;
@@ -400,88 +370,6 @@
     font-size: 30px ;
     color: #38b98e;
 }
-.footer {
-    width: 100%;
-    min-height: fit-content;
-    padding: 30px 2%;
-    background-color: #232323;
-    color: white;
-}
-.top {
-    width: 100%;
-    min-height: 200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 20px;
-}
-.rightSide {
-    width: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-}
-.footerTitle {
-    width: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: start;
-}
-.footerTitle .footerLink {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    font-size: 40px;
-    color: white;
-}
-.logoImage {
-    width: 80px;
-    height: 80px;
-}
-.rightContent {
-    width: 100%;
-}
-.rightContent p {
-    font-size: 25px;
-}
-.middleSide {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.title h2 { 
-    color: white;
-    font-size: 40px;
-}
-.middleContent {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.leftSide {
-    width: 15%;
-}
-.footerLinks {
-    text-decoration: none;
-    color: white;
-    font-size: 25px;
-}
-.bottom {
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.bottom h2 {
-    font-size: 30px;
-}
 
 
 @media(max-width: 1050px) {
@@ -496,20 +384,27 @@
         display: none;
     }
     .banner {
-        min-height: 150px;
+        height: 200px;
+        overflow: hidden;
     }
-    .content {
-        padding: 30px 2%;
+    .bannerHeader {
+        padding: 20px 0;
     }
-    .info h2 {
-        font-size: 20px;
-    }
-    .info p {
+    .bannerHeader h2 {
         font-size: 18px;
     }
+    .content {
+        padding: 5px 0%;
+    }
+    .info h2 {
+        font-size: 18px;
+    }
+    .info p {
+        font-size: 16px;
+    }
     .roshitaImage {
-        width: 100px;
-        height: 100px;
+        width: 50px;
+        height: 50px;
     }
 }
 @media(max-width: 767px) {
@@ -517,14 +412,21 @@
         width: 90%;
         height: 140px;
     }
+    .bannerContainer {
+        padding: 20px ;
+    }
     .content {
         flex-direction: column-reverse;
-        padding: 30px 0;
+        padding: 10px 0;
     }
     .info {
         justify-content: center;
         align-items: center;
         gap: 10px;
+    }
+    .info button {
+        font-size: 18px;
+        padding: 3px;
     }
     .textInfo {
         padding: 30px 10px;
@@ -539,7 +441,7 @@
         font-size: 19px;
     }
     .imagesTitle h2 {
-        font-size: 30px;
+        font-size: 23px;
     }
     .card {
         width: 150px;
@@ -556,22 +458,6 @@
         height: 80px;
     }
     .reviewsTitle h2 {
-        font-size: 30px;
-    }
-    .top {
-        flex-direction: column;
-        gap: 30px;
-    }
-    .rightSide {
-        width: 100%;
-        text-align: center;
-    }
-    .middleSide {
-        width: 100%;
-        text-align: center;
-    }
-    .leftSide {
-        width: 100%;
-        text-align: center;
+        font-size: 23px;
     }
 }

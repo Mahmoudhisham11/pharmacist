@@ -45,7 +45,7 @@ function Header({openNav, setOpenNav}) {
                     </div>
                 </div>
                 <div className={styles.leftSide}>
-                    <Link href="/" className={styles.link}>
+                    <Link href="/login" className={styles.link}>
                         <span><BsPerson/></span>
                         <span>تسجيل الدخول</span>
                     </Link>

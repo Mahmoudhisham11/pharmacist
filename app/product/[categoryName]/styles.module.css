@@ -1,0 +1,35 @@
+.btn {
+    width: 80%;
+    border: none;
+    font-size: 25px;
+    color: white;
+    background-color: #38b98e;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.categorySction {
+    width: 100%;
+    min-height: calc(100vh - 162px);
+    padding: 30px 2%;
+}
+.categoryTitle h2 {
+    font-size: 30px;
+    color: black;
+}
+.categoryContent {
+    width: 100%;
+    background-color: red;
+    height: fit-content;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+@media(max-width: 767px) {
+    .btn {
+        font-size: 18px;
+    }
+}

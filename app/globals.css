@@ -7,17 +7,90 @@
   --primary-color: #b80000;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "cairo Arial";
   direction: rtl;
 }
 .main {
   width: 100%;
   min-height: 100vh;
 }
+.card {
+  width: 200px;
+  height: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 0;
+  border-radius: 8px;
+  transition: .3s;
+}
+.card:hover {
+  box-shadow: 0 15px 15px black;
+}
+.cardHead {
+  position: relative;
+  width: 100%;
+  height: 70%;
+}
+.cardBody {
+  width: 100%;
+  padding: 0 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.bodyText {
+  width: 100%;
+  text-align: start;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 17px;
+}
+.formContent {
+  width: 100%;
+  min-height: calc(100vh - 180px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.inputContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.inputContainer label {
+  font-size: 30px;
+  color: black;
+}
+.inputContainer input {
+  padding: 7px;
+  border: 1px solid black;
+  outline: none;
+  border-radius: 8px;
+}
+.inputContainer select {
+  padding: 7px;
+  border: 1px solid black;
+  outline: none;
+  border-radius: 8px;
+}
+
 
 @media(max-width: 767px) {
   .swiper-button-next,
   .swiper-button-prev{
     display: none !important;
+  }
+  .card {
+    width: 150px;
   }
 }

@@ -35,15 +35,7 @@ function Nav({openNav, setOpenNav}) {
             link: "/test"
         },
         {   id: 7,
-            text: 'المستلزمات الطبية',
-            link: "/test"
-        },
-        {   id: 8,
             text: 'الفيتامينات و المكملات',
-            link: "/test"
-        },
-        {   id: 9,
-            text: 'الصحة الجنسية',
             link: "/test"
         },
     ])
@@ -54,7 +46,7 @@ function Nav({openNav, setOpenNav}) {
     return(
         <nav className={openNav ? `${styles.nav} ${styles.open}` : `${styles.nav}`}>
             <div className={styles.top}>
-                <Link href={"/"} className={styles.loginLink}>
+                <Link href={"/login"} className={styles.loginLink}>
                     <span><IoPersonOutline/></span>
                     <span>تسجيل الدخول</span>
                 </Link>
