@@ -86,7 +86,7 @@ function Add() {
                 </div>
                 <div className="inputContainer">
                     <label>تصنيف المنتج :</label>
-                    <select onChange={(e) => setType(e.target.value)}>
+                    <select value={type} onChange={(e) => setType(e.target.value)}>
                         <option value="الادوية">الادوية</option>
                         <option value="العناية بالبشرة">العناية بالبشرة</option>
                         <option value="العناية بالشعر">العناية بالشعر</option>
