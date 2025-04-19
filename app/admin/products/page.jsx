@@ -32,7 +32,7 @@ function Products() {
         <div className="main">
             <header className={styles.header}>
                 <div className={styles.rightSide}>
-                    <Link href={"/"} className={styles.headerLink}><RiLogoutCircleLine/></Link>
+                    <Link href={"/"} onClick={() => localStorage.removeItem("email")} className={styles.headerLink}><RiLogoutCircleLine/></Link>
                 </div>
                 <div className={styles.middleSide}>
                     <h2>المنتجات</h2>

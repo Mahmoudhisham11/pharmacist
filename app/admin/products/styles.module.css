@@ -51,7 +51,7 @@
 }
 
 @media(max-width: 767px) {
-    .btn {
-        font-size: 18px;
+    .addBtn {
+        font-size: 15px;
     }
 }

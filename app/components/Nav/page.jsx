@@ -6,50 +6,59 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FiHome } from "react-icons/fi";
 import { GrNotes } from "react-icons/gr";
 import { IoIosArrowBack } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Nav({openNav, setOpenNav}) {
+    const email = localStorage.getItem("email")
+    const userName = localStorage.getItem("name")
+    const [login, setLogin] = useState(false)
     const [categorieLinks, setCategorieLinks] = useState([
         {   id: 1,
             text: 'الادوية',
-            link: "/test"
         },
         {   id: 2,
             text: 'العناية بالشعر',
-            link: "/test"
         },
         {   id: 3,
             text: 'العناية بالبشرة',
-            link: "/test"
         },
         {   id: 4,
             text: 'العناية اليومية',
-            link: "/test"
         },
         {   id: 5,
             text: 'الام و الطفل',
-            link: "/test"
         },
         {   id: 6,
             text: 'المكياج و الاكسسوارات',
-            link: "/test"
         },
         {   id: 7,
             text: 'الفيتامينات و المكملات',
-            link: "/test"
         },
     ])
+    
     const handleCloseNav = () => {
         setOpenNav(false)
     }
 
+    useEffect(() => {
+        if(email) {
+            setLogin(true)
+        }else {
+            setLogin(false)
+        }
+    }, [email])
+
     return(
         <nav className={openNav ? `${styles.nav} ${styles.open}` : `${styles.nav}`}>
             <div className={styles.top}>
-                <Link href={"/login"} className={styles.loginLink}>
-                    <span><IoPersonOutline/></span>
-                    <span>تسجيل الدخول</span>
-                </Link>
+                {login ? 
+                    <h2>مرحبا: {userName}</h2>
+                    :
+                    <Link href={"/login"} className={styles.loginLink}>
+                        <span><IoPersonOutline/></span>
+                        <span>تسجيل الدخول</span>
+                    </Link>
+                }
                 <button onClick={handleCloseNav}><IoIosCloseCircleOutline/></button>
             </div>
             <hr />
@@ -58,14 +67,13 @@ function Nav({openNav, setOpenNav}) {
                     <span><FiHome/></span>
                     <span>الرئيسية</span>
                 </Link>
-                <Link href={"/"} className={styles.homeLink}>
-                    <span><GrNotes/></span>
-                    <span>الروشتة</span>
-                </Link>
-                <Link href={"/"} className={styles.homeLink}>
-                    <span><GrNotes/></span>
-                    <span>من نحن</span>
-                </Link>
+                {login ? 
+                    <Link href={"/"} className={styles.homeLink}>
+                        <span><GrNotes/></span>
+                        <span>الملف الشخصي</span>
+                    </Link> :
+                    ""
+                }
             </div>
             <hr />
             <div className={styles.categories}>
@@ -76,7 +84,7 @@ function Nav({openNav, setOpenNav}) {
                     {categorieLinks.map(link => {
                         return (
                             <li key={link.id}>
-                                <Link href={link.link} className={styles.categorieLink}>
+                                <Link href={`/product/${encodeURIComponent(link.text)}`} className={styles.categorieLink}>
                                     <span>{link.text}</span>
                                     <span><IoIosArrowBack/></span>
                                 </Link>

@@ -4,10 +4,11 @@ import Header from "@/app/components/Header/page";
 import Nav from "@/app/components/Nav/page";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import heareCare from "../../../public/images/heareCare2.PNG"
 import Footer from "@/app/components/Footer/page";
+import Link from "next/link";
 import { db } from "@/app/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import CartBtn from "@/app/components/CartBtn/page";
 
 function CategoryName ({params}) {
     const [openNav, setOpenNav] = useState(false)
@@ -41,10 +42,12 @@ function CategoryName ({params}) {
                                 </div>
                                 <div className="cardBody">
                                     <div className="bodyText">
-                                        <p>{product.name}</p>
+                                        <Link href={`/info/${encodeURIComponent(product.id)}`} style={{color: "black", textDecoration: "none"}}>
+                                            <p>{product.name}</p>
+                                        </Link>
                                         <strong>{product.price} جنية</strong>
                                     </div>
-                                    <button className={styles.btn}>اضف الى العربة</button>
+                                    <CartBtn product={product}/>
                                 </div>
                             </div>
                         )

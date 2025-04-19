@@ -1,0 +1,10 @@
+.cartContent {
+    width: 100%;
+    min-height: calc(100vh - 165px);
+    background-color: #cececefa;
+    padding: 30px 2%;
+}
+.title h2 {
+    font-size: 30px;
+    color: black;
+}

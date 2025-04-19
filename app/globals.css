@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  /* font-family: "Noto Sans Arabic"; */
+  font-family: "Cairo";
 }
 :root {
   --primary-color: #b80000;
@@ -97,5 +97,8 @@ body {
   }
   .card {
     width: 190px;
+  }
+  .inputContainer label {
+    font-size: 20px;
   }
 }

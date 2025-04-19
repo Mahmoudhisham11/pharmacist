@@ -10,12 +10,24 @@ import { LuShoppingCart } from "react-icons/lu";
 import { HiMiniBars3 } from "react-icons/hi2";
 import { IoLocationSharp } from "react-icons/io5";
 import { IoIosArrowBack } from "react-icons/io";
+import { GrNotes } from "react-icons/gr";
+import { useState, useEffect } from "react";
 
 function Header({openNav, setOpenNav}) {
+    const email = localStorage.getItem("email")
+    const [login, setLogin] = useState(false)
 
     const handleOpenNav = () => {
         setOpenNav(true)
     }
+
+    useEffect(() => {
+        if(email) {
+            setLogin(true)
+        }else {
+            setLogin(false)
+        }
+    }, [email])
 
     return(
         <div className={styles.headerContainer}>
@@ -45,15 +57,22 @@ function Header({openNav, setOpenNav}) {
                     </div>
                 </div>
                 <div className={styles.leftSide}>
-                    <Link href="/login" className={styles.link}>
-                        <span><BsPerson/></span>
-                        <span>تسجيل الدخول</span>
-                    </Link>
+                    {login ? 
+                        <Link href={email === "admin" ? `/admin/products` : `/user/${encodeURIComponent(email)}`} className={styles.link}>
+                            <span><GrNotes/></span>
+                            <span>الملف الشخصي</span>
+                        </Link>
+                            :
+                        <Link href="/login" className={styles.link}>
+                            <span><BsPerson/></span>
+                            <span>تسجيل الدخول</span>
+                        </Link> 
+                    }
                     <Link href="/" className={styles.link}>
                         <span><IoMdHeartEmpty/></span>
                         <span>المفضلة</span>
                     </Link>
-                    <Link href="/" className={styles.link}>
+                    <Link href="/cart" className={styles.link}>
                         <span><LuShoppingCart/></span>
                         <span>السلة</span>
                     </Link> 

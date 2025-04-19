@@ -45,7 +45,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .textInfo {
     width: 100%;
@@ -71,9 +71,10 @@
 }
 .banner {
     width: 100%;
-    height: 250px;
+    min-height: 250px;
     background-color: #38b98e34;
     border-radius: 8px;
+    padding-bottom: 15px;
 }
 .bannerHeader {
     width: 100%;
@@ -153,7 +154,7 @@
     padding: 0 4%;
 }
 .title h2 {
-    font-size: 30px;
+    font-size: 25px;
     color: black;
 }
 .categorieContent {
@@ -206,7 +207,7 @@
     padding: 20px 0;
 }
 .productsTitle h2 {
-    font-size: 30px;
+    font-size: 25px;
     color: black;
 }
 .titleLink {
@@ -219,7 +220,7 @@
     color: #38b98e;
     text-decoration: none;
     padding: 5px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     transition: .3s;
 }
@@ -230,15 +231,6 @@
 .cardLink {
     text-decoration: none;
     color: black;
-}
-.btn {
-    width: 80%;
-    border: none;
-    font-size: 25px;
-    color: white;
-    background-color: #38b98e;
-    border-radius: 8px;
-    cursor: pointer;
 }
 .imagesContainer {
     width: 100%;
@@ -251,7 +243,7 @@
 }
 .imagesTitle h2 {
     color: black;
-    font-size: 40px;
+    font-size: 30px;
 }
 .imagesContent {
     width: 100%;
@@ -264,7 +256,7 @@
 }
 .card {
     width: fit-content;
-    height: fit-content;
+    min-height: fit-content;
     border-left: 1px solid rgba(0, 0, 0, 0.5);
     padding: 30px;
     display: flex;
@@ -273,11 +265,11 @@
     flex-direction: column;
 }
 .card h2 {
-    font-size: 30px;
+    font-size: 25px;
     color: black;
 }
 .card p {
-    font-size: 30px;
+    font-size: 25px;
     color: black;
 }
 .cardImage {
@@ -291,7 +283,7 @@
     background-color: #E5F8FF;
 }
 .reviewsTitle h2 {
-    font-size: 50px;
+    font-size: 30px;
     color: rgba(0, 0, 0);
 }
 .reviewsContent {
@@ -313,6 +305,9 @@
 }
 .reviewCard hr {
     width: 100%;
+}
+.cardHeade {
+    text-align: center;
 }
 .reviewCard .cardBody {
     text-transform: capitalize;
@@ -340,21 +335,11 @@
         align-items: start;
     }
     .sliderContainer {
-        width: 80%;
+        width: 100%;
         height: 250px;
     }
     .heroImages {
         display: none;
-    }
-    .banner {
-        height: 230px;
-        overflow: hidden;
-    }
-    .bannerHeader {
-        padding: 20px 0;
-    }
-    .bannerHeader h2 {
-        font-size: 18px;
     }
     .content {
         padding: 5px 0%;
@@ -365,6 +350,13 @@
     .info p {
         font-size: 16px;
     }
+    .textInfo {
+        height: 70px;
+        padding: 30px 10px;
+    }
+    .textInfo p {
+        font-size: 16px;
+    }
     .roshitaImage {
         width: 50px;
         height: 50px;
@@ -372,7 +364,7 @@
 }
 @media(max-width: 767px) {
     .sliderContainer {
-        width: 90%;
+        width: 100%;
         height: 140px;
     }
     .content {
@@ -389,29 +381,33 @@
         padding: 3px;
     }
     .textInfo {
+        height: 70px;
         padding: 30px 10px;
     }
     .textInfo p {
+        font-size: 15px;
+    }
+    .bannerHeader h2 {
         font-size: 18px;
     }
     .productsTitle h2 {
-        font-size: 20px;
+        font-size: 15px;
     }
     .titleLink {
-        font-size: 19px;
+        font-size: 15px;
     }
     .imagesTitle h2 {
-        font-size: 23px;
+        font-size: 18px;
     }
     .card {
         width: 150px;
         height: 170px;
     }
     .card h2 {
-        font-size: 25px;
+        font-size: 18px;
     }
     .card p {
-        font-size: 25px;
+        font-size: 18px;
     }
     .btn {
         font-size: 18px;
@@ -421,6 +417,6 @@
         height: 80px;
     }
     .reviewsTitle h2 {
-        font-size: 23px;
+        font-size: 18px;
     }
 }

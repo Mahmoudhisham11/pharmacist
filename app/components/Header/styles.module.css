@@ -37,7 +37,7 @@
 }
 .logo {
     text-decoration: none;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     color: black;
 }
@@ -58,7 +58,7 @@
     display: none;
 }
 .middleSide {
-    width: 600px;
+    width: 500px;
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -74,7 +74,7 @@
     background-color: transparent;
     border: none;
     outline: none;
-    font-size: 25px;
+    font-size: 20px;
 }
 .middleSide p {
     font-size: 18px;
@@ -89,7 +89,7 @@
     height: 80px;
     position: relative;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,11 +115,11 @@
 @media(max-width: 1200px) {
     .bannerText {
         gap: 15px;
-        font-size: 30px;
+        font-size: 20px;
         width: 80%;
     }
     .banner p {
-        font-size: 30px;
+        font-size: 20px;
     }
     .header {
         align-items: start;
@@ -173,10 +173,10 @@
 @media(max-width: 767px) {
     .bannerText {
         gap: 15px;
-        font-size: 18px;
+        font-size: 16px;
         width: 80%;
     }
     .banner p {
-        font-size: 18px;
+        font-size: 16px;
     }
 }

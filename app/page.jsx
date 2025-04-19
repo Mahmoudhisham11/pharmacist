@@ -34,6 +34,7 @@ import { FaMarker } from "react-icons/fa";
 import Footer from "./components/Footer/page";
 import { db } from "./firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import CartBtn from "./components/CartBtn/page";
 
 export default function Home() {
   const productsCollection = collection(db, "products")
@@ -207,7 +208,7 @@ export default function Home() {
                             </Link>
                             <strong>{product.price} جنية</strong>
                           </div>
-                          <button className={styles.btn}>اضف الى العربة</button>
+                          <CartBtn product={product}/>
                         </div>
                     </div>
                   </SwiperSlide>

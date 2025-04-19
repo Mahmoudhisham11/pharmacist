@@ -11,6 +11,7 @@ import Image from "next/image";
 import { IoMdClock } from "react-icons/io";
 import { GiShop } from "react-icons/gi";
 import Footer from "@/app/components/Footer/page";
+import CartBtn from "@/app/components/CartBtn/page";
 
 function ProductInfo({params}) {
     const [openNav, setOpenNav] = useState(false)
@@ -57,7 +58,7 @@ function ProductInfo({params}) {
                             <strong>أقرب صيدلية</strong>
                         </div>
                     </div>
-                    <button>اضف الى العربة</button>
+                    <CartBtn product={product}/>
                 </div>
                 )
             })}
