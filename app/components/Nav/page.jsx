@@ -9,7 +9,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useEffect, useState } from "react";
 
 function Nav({openNav, setOpenNav}) {
-    const email = localStorage.getItem("email")
+    
     const userName = localStorage.getItem("name")
     const [login, setLogin] = useState(false)
     const [categorieLinks, setCategorieLinks] = useState([
@@ -41,12 +41,15 @@ function Nav({openNav, setOpenNav}) {
     }
 
     useEffect(() => {
+        if(typeof window !== "undefined") {
+            const email = localStorage.getItem("email")
+        }
         if(email) {
             setLogin(true)
         }else {
             setLogin(false)
         }
-    }, [email])
+    }, [])
 
     return(
         <nav className={openNav ? `${styles.nav} ${styles.open}` : `${styles.nav}`}>

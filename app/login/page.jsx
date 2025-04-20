@@ -26,8 +26,10 @@ function Login() {
             if(userData.password !== password) {
                 alert("كلمة المرور غير صحيحة")
             }else {
-                localStorage.setItem("name", userData.userName)
-                localStorage.setItem("email", userData.email)
+                if(typeof window !== "undefined") {
+                    localStorage.setItem("name", userData.userName)
+                    localStorage.setItem("email", userData.email)
+                }
             }
             if(email === "admin") {
                 router.push("/admin")
