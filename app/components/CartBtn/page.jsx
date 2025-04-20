@@ -7,10 +7,12 @@ import { addDoc, collection } from "firebase/firestore";
 
 function CartBtn({product}) {
     const [addedToCart, setAddedToCart] = useState(false)
-    const email = localStorage.getItem("email")
     const router = useRouter()
     
     const handleAddToCart = async() => {
+        if(typeof window !== "undefined") {
+            const email = localStorage.getItem("email")
+        }
         if(!email) {
             alert("يجب تسجيل الدخول قبل طلب المنتجات")
             router.push("/login")
