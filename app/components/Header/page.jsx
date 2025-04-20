@@ -14,7 +14,6 @@ import { GrNotes } from "react-icons/gr";
 import { useState, useEffect } from "react";
 
 function Header({openNav, setOpenNav}) {
-    const email = localStorage.getItem("email")
     const [login, setLogin] = useState(false)
 
     const handleOpenNav = () => {
@@ -22,12 +21,15 @@ function Header({openNav, setOpenNav}) {
     }
 
     useEffect(() => {
+        if(typeof window !== "undefined") {
+            const email = localStorage.getItem("email")
+        }
         if(email) {
             setLogin(true)
         }else {
             setLogin(false)
         }
-    }, [email])
+    }, [])
 
     return(
         <div className={styles.headerContainer}>
