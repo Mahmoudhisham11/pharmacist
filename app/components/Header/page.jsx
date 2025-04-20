@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 
 function Header({openNav, setOpenNav}) {
     const [login, setLogin] = useState(false)
-
+    const [userEmail, setUserEmail] = useState('') 
     const handleOpenNav = () => {
         setOpenNav(true)
     }
@@ -23,11 +23,12 @@ function Header({openNav, setOpenNav}) {
     useEffect(() => {
         if(typeof window !== "undefined") {
             const email = localStorage.getItem("email")
-        }
-        if(email) {
-            setLogin(true)
-        }else {
-            setLogin(false)
+            if(email) {
+                setUserEmail(email)
+                setLogin(true)
+            }else {
+                setLogin(false)
+            }
         }
     }, [])
 
@@ -60,7 +61,7 @@ function Header({openNav, setOpenNav}) {
                 </div>
                 <div className={styles.leftSide}>
                     {login ? 
-                        <Link href={email === "admin" ? `/admin/products` : `/user/${encodeURIComponent(email)}`} className={styles.link}>
+                        <Link href={userEmail === "admin" ? `/admin/products` : `/user/${encodeURIComponent(userEmail)}`} className={styles.link}>
                             <span><GrNotes/></span>
                             <span>الملف الشخصي</span>
                         </Link>

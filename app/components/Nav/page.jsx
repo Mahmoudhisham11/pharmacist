@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 
 function Nav({openNav, setOpenNav}) {
     const [login, setLogin] = useState(false)
+    const [name, setName] = useState('')
     const [categorieLinks, setCategorieLinks] = useState([
         {   id: 1,
             text: 'الادوية',
@@ -37,16 +38,18 @@ function Nav({openNav, setOpenNav}) {
     const handleCloseNav = () => {
         setOpenNav(false)
     }
-
     useEffect(() => {
         if(typeof window !== "undefined") {
             const email = localStorage.getItem("email")
             const userName = localStorage.getItem("name")
-        }
-        if(email) {
-            setLogin(true)
-        }else {
-            setLogin(false)
+            if(userName) {
+                setName(userName)
+            }
+            if(email) {
+                setLogin(true)
+            }else {
+                setLogin(false)
+            }
         }
     }, [])
 
@@ -54,7 +57,7 @@ function Nav({openNav, setOpenNav}) {
         <nav className={openNav ? `${styles.nav} ${styles.open}` : `${styles.nav}`}>
             <div className={styles.top}>
                 {login ? 
-                    <h2>مرحبا: {userName}</h2>
+                    <h2>مرحبا: {name}</h2>
                     :
                     <Link href={"/login"} className={styles.loginLink}>
                         <span><IoPersonOutline/></span>

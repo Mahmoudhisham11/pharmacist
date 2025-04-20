@@ -72,7 +72,7 @@ export default function Home() {
       image: makeup
     },
     {
-      id: 6,
+      id: 7,
       text: "الفيتامينات و المكملات",
       image: sub
     },
