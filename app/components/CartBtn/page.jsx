@@ -12,20 +12,20 @@ function CartBtn({product}) {
     const handleAddToCart = async() => {
         if(typeof window !== "undefined") {
             const email = localStorage.getItem("email")
-        }
-        if(!email) {
-            alert("يجب تسجيل الدخول قبل طلب المنتجات")
-            router.push("/login")
-        }else {
-            await addDoc(collection(db, "cart"), {
-                name: product.name,
-                price: product.price,
-                image: product.image,
-                description: product.description,
-                email
-            })
-            alert("تم اضافة المنتج الى العربة")
-            setAddedToCart(true)
+            if(email) {
+                await addDoc(collection(db, "cart"), {
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    description: product.description,
+                    email
+                })
+                alert("تم اضافة المنتج الى العربة")
+                setAddedToCart(true)
+            }else {
+                alert("يجب تسجيل الدخول قبل طلب المنتجات")
+                router.push("/login")
+            }
         }
     }
 

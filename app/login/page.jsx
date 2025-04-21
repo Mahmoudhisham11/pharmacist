@@ -32,9 +32,9 @@ function Login() {
                 }
             }
             if(email === "admin") {
-                router.push("/admin")
+                router.push("/admin/products")
             }else {
-                router.push(`/user/${encodeURIComponent(email)}`)
+                router.push(`/`)
             }
         }
         
