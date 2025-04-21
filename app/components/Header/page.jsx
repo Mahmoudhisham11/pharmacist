@@ -49,7 +49,7 @@ function Header({openNav, setOpenNav}) {
                     </div>
                     <div className={styles.mobileIcons}>
                         <Link href="/" className={styles.mobileLinks}><IoMdHeartEmpty/></Link>
-                        <Link href="/" className={styles.mobileLinks}><LuShoppingCart/></Link>
+                        <Link href="/cart" className={styles.mobileLinks}><LuShoppingCart/></Link>
                     </div>
                 </div>
                 <div className={styles.container}>
