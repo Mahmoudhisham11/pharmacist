@@ -2,7 +2,7 @@
 import styles from "./styles.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import logoImage from "../../../public/images/logo-removebg-preview.png"
+import logoImage from "../../public/images/logo-removebg-preview.png"
 import { CiSearch } from "react-icons/ci";
 import { BsPerson } from "react-icons/bs";
 import { IoMdHeartEmpty } from "react-icons/io";
@@ -11,18 +11,18 @@ import { HiMiniBars3 } from "react-icons/hi2";
 import { IoLocationSharp } from "react-icons/io5";
 import { IoIosArrowBack } from "react-icons/io";
 import { GrNotes } from "react-icons/gr";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { db } from "../firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import CartBtn from "../components/CartBtn/page";
 
-function Header({openNav, setOpenNav}) {
-    const [login, setLogin] = useState(false)
-    const [userEmail, setUserEmail] = useState('') 
-    const router = useRouter()
-
-    const handleOpenNav = () => {
-        setOpenNav(true)
-    }
-
+function Search() {
+    const [login, setLogin] = useState(false) 
+    const [userEmail, setUserEmail] = useState('')
+    const [products, setProducts] = useState([])
+    const [filterd, setFilterd] = useState([])
+    const [search, setSearch] = useState('')
+    
     useEffect(() => {
         if(typeof window !== "undefined") {
             const email = localStorage.getItem("email")
@@ -32,10 +32,24 @@ function Header({openNav, setOpenNav}) {
             }else {
                 setLogin(false)
             }
+        }  
+        const getAllData = async() => {
+            const querySnapshot = await getDocs(collection(db, "products"))
+            const productsData = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+            setProducts(productsData)
         }
-    }, [])
+        const filterdData = async() => {
+            const q = query(collection(db, "products"), where("name", "==", search))
+            const querySnapshot = await getDocs(q)
+            const productsData = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+            setFilterd(productsData)
+        }
+        getAllData()
+        filterdData()   
+    }, [userEmail, search])
 
     return(
+        <div className="main">
         <div className={styles.headerContainer}>
             <div className={styles.banner}>
                 <Link href="/" className={styles.bannerText}>
@@ -56,10 +70,16 @@ function Header({openNav, setOpenNav}) {
                     </div>
                 </div>
                 <div className={styles.container}>
-                    <button onClick={handleOpenNav}><HiMiniBars3/></button>
                     <div className={styles.middleSide}>
                         <p><CiSearch  /></p>
-                        <input type="text" placeholder="ابحث عن المنتج" onFocus={() => router.push("/search")}/>
+                        <input list="products" placeholder="ابحث عن المنتج" onChange={(e) => setSearch(e.target.value)}/>
+                        <datalist id="products">
+                            {products.map(product => {
+                                return(
+                                    <option key={product.id} value={product.name}/>
+                                )
+                            })}
+                        </datalist>
                     </div>
                 </div>
                 <div className={styles.leftSide}>
@@ -85,7 +105,28 @@ function Header({openNav, setOpenNav}) {
                 </div>
             </header>
         </div>
+        <div className={styles.searchContent}>
+            {filterd.map(product => {
+                return(
+                    <div className="card" key={product.id}>
+                        <div className="cardHead">
+                            <Image src={product.image} fill style={{objectFit: "cover"}} alt="product-image" />
+                        </div>
+                        <div className="cardBody">
+                            <div className="bodyText">
+                                <Link href={`/info/${encodeURIComponent(product.id)}`} style={{color: "black", textDecoration: "none"}}>
+                                    <p>{product.name}</p>
+                                </Link>
+                                <strong>{product.price} جنية</strong>
+                            </div>
+                            <CartBtn product={product}/>
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
+        </div>
     )
 }
 
-export default Header;
+export default Search;
