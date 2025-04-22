@@ -111,6 +111,8 @@
     left: 0;
 }
 .searchContent {
+    width: 100%;
+    height: calc(100vh - 300px);
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

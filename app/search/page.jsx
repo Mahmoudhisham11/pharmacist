@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import CartBtn from "../components/CartBtn/page";
+import Footer from "../components/Footer/page";
 
 function Search() {
     const [login, setLogin] = useState(false) 
@@ -125,6 +126,7 @@ function Search() {
                 )
             })}
         </div>
+        <Footer/>
         </div>
     )
 }
