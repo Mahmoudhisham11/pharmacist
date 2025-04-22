@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Pharmastic",
+  title: "Pharmacist",
   description: "صيدلاني المكان المناسب لطلب كل منتجاتك من الصيدلية وتبادل المنتجات بين المستخدمين",
 };
 
