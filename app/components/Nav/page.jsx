@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 function Nav({openNav, setOpenNav}) {
     const [login, setLogin] = useState(false)
     const [name, setName] = useState('')
+    const [userEmail, setUserEmail] = useState('')
     const [categorieLinks, setCategorieLinks] = useState([
         {   id: 1,
             text: 'الادوية',
@@ -46,6 +47,7 @@ function Nav({openNav, setOpenNav}) {
                 setName(userName)
             }
             if(email) {
+                setUserEmail(email)
                 setLogin(true)
             }else {
                 setLogin(false)
@@ -73,7 +75,7 @@ function Nav({openNav, setOpenNav}) {
                     <span>الرئيسية</span>
                 </Link>
                 {login ? 
-                    <Link href={"/"} className={styles.homeLink}>
+                    <Link href={`/user/${encodeURIComponent(userEmail)}`} className={styles.homeLink}>
                         <span><GrNotes/></span>
                         <span>الملف الشخصي</span>
                     </Link> :
