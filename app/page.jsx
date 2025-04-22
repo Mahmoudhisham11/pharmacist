@@ -35,11 +35,13 @@ import Footer from "./components/Footer/page";
 import { db } from "./firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import CartBtn from "./components/CartBtn/page";
+import ChangeBtn from "./components/ChangeBtn/page";
 
 export default function Home() {
   const productsCollection = collection(db, "products")
   const [openNav, setOpenNav] = useState(false)
   const [products, setProducts] = useState([])
+  const [userProducts, setUserProducts] = useState([])
   const [sections, setSections] = useState([
     {
       id: 1,
@@ -85,6 +87,12 @@ export default function Home() {
       setProducts(productsList)
     }
     getAllProducts()
+      const getUserProducts = async() => {
+        const querySnapshot = await getDocs(collection(db, "userProducts"))
+        const userProductsData = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+        setUserProducts(userProductsData)
+      }
+      getUserProducts()
   }, [productsCollection])
 
   return (
@@ -170,6 +178,14 @@ export default function Home() {
                 </div>
                 )
               })}
+              <div className={styles.categorieCard}>
+                <div className={styles.cardHeader}>
+                  <Image src={bnadol1} className={styles.categorieImage} alt="logoImage"/>
+                </div>
+                <div className={styles.cardBody}>
+                  <Link href={`/change`} className={styles.categorieLink}>التبادل</Link>
+                </div>
+              </div>
             </div>
           </section>
           {sections.map(section => {
@@ -218,6 +234,48 @@ export default function Home() {
             </section>
             )
           })}
+          <section className={styles.products}>
+              <div className={styles.productsTitle}>
+                <h2>منتجات التبادل</h2>
+                <Link href={`/change`} className={styles.titleLink}>
+                  <span>عرض الكل</span>
+                  <span><IoIosArrowBack/></span>
+                </Link>
+              </div>
+              <Swiper
+                modules={[Navigation]}
+                spaceBetween={80}
+                slidesPerView={1.5}
+                navigation
+                breakpoints={{
+                  640: {slidesPerView: 2},
+                  768: {slidesPerView: 3},
+                  1024: {slidesPerView: 4}
+                }}
+                className={styles.swiper}
+              >
+                {userProducts.map(product => {
+                  return(
+                    <SwiperSlide className={styles.swiperSlider} key={product.id}>
+                  <div className="card">
+                    <div className="cardHead">
+                      <Image src={product.image} fill style={{objectFit: "cover"}}  alt="logoImgae"/>
+                    </div>
+                    <div className="cardBody">
+                      <div className="bodyText">
+                        <Link href={`/changeInfo/${encodeURIComponent(product.id)}`} className={styles.cardLink}>
+                          <p>{product.name}</p>
+                        </Link>
+                        <strong>{product.price} جنية</strong>
+                      </div>
+                      <ChangeBtn/>
+                    </div>
+                  </div>
+              </SwiperSlide>
+                  )
+                })}
+              </Swiper>
+          </section>
           <section className={styles.imagesContainer}>
             <div className={styles.imagesTitle}>
               <h2>نحن نغطي كل احتياجاتك من الصيدلية</h2>

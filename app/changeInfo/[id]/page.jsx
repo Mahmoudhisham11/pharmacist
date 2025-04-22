@@ -1,30 +1,29 @@
 "use client";
-
+import styles from "./styles.module.css";
 import Header from "@/app/components/Header/page";
 import Nav from "@/app/components/Nav/page";
 import { useEffect, useState } from "react";
 import { db } from "@/app/firebase";
-import { doc, getDoc } from "firebase/firestore";
-import styles from "./styles.module.css";
+import { collection, doc, getDoc } from "firebase/firestore";
 import Image from "next/image";
 import { IoMdClock } from "react-icons/io";
 import { GiShop } from "react-icons/gi";
 import Footer from "@/app/components/Footer/page";
-import CartBtn from "@/app/components/CartBtn/page";
+import ChangeBtn from "@/app/components/ChangeBtn/page";
 
-function ProductInfo({params}) {
+function ChangeInfo({params}) {
     const [openNav, setOpenNav] = useState(false)
-    const productInfo = decodeURIComponent(params.productInfo)
+    const id = decodeURIComponent(params.id)
     const [products, setProducts] = useState([])
 
     useEffect(() => {
         const getProductInfo = async() => {
-            const productRef = doc(db, "products", productInfo)
+            const productRef = doc(db, "userProducts", id)
             const productData = await getDoc(productRef)
             setProducts([{...productData.data(), id: productData.id}])
         }
         getProductInfo()
-    }, [productInfo,products])
+    }, [id, products])
 
     return(
         <div className="main">
@@ -38,32 +37,16 @@ function ProductInfo({params}) {
                     </div>
                     <div className={styles.productInfo}>
                         <h2>{product.name}</h2>
-                        <p>السعر: <strong>{product.price} جنية</strong></p>
+                        <p>الوصف: <strong>{product.description}</strong></p>
                     </div>
-                    <div className={styles.informations}>
-                        <div className={styles.infoItems}>
-                            <p>
-                                <span><IoMdClock/></span>
-                                <span>زمن التوصيل :</span>
-                            </p>
-                            <strong>في خلال ساعة الى ساعتين</strong>
-                        </div>
-                        <hr />
-                        <div className={styles.infoItems}>
-                            <p>
-                                <span><GiShop/></span>
-                                <span>يباع بواسطة :</span>
-                            </p>
-                            <strong>أقرب صيدلية</strong>
-                        </div>
-                    </div>
-                    <CartBtn product={product}/>
+                    <ChangeBtn/>
                 </div>
                 )
+                
             })}
             <Footer/>
         </div>
     )
 }
 
-export default ProductInfo;
+export default ChangeInfo;
