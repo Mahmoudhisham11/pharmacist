@@ -307,18 +307,7 @@
     width: 100%;
 }
 .cardHeade {
-    text-align: center;
-}
-.reviewCard .cardBody {
-    text-transform: capitalize;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-}
-.reviewCard .cardBody p {
-    color: rgba(0, 0, 0, 0.5);
+    text-align: end;
 }
 .cardIcon {
     width: 100%;

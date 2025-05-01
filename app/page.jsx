@@ -18,7 +18,6 @@ import logoImage from "../public/images/logo-removebg-preview.png"
 import roshitaImage from "../public/images/roshitaImage.png"
 import { useEffect, useState } from "react";
 import Nav from "./components/Nav/page";
-import Loading from "./components/Loading/page";
 import map from "../public/images/map.gif"
 import medicine from "../public/images/medicine (1).gif"
 import snack from "../public/images/snacke.gif"
@@ -97,7 +96,6 @@ export default function Home() {
 
   return (
       <main className="main">
-        {/* <Loading/> */}
         <Nav openNav={openNav} setOpenNav={setOpenNav}/>
         <Header openNav={openNav} setOpenNav={setOpenNav}/>
         <div className="mainContainer">
@@ -183,10 +181,51 @@ export default function Home() {
                   <Image src={bnadol1} className={styles.categorieImage} alt="logoImage"/>
                 </div>
                 <div className={styles.cardBody}>
-                  <Link href={`/change`} className={styles.categorieLink}>التبادل</Link>
+                  <Link href={`/change`} className={styles.categorieLink}>المقايدة</Link>
                 </div>
               </div>
             </div>
+          </section>
+          <section className={styles.products}>
+              <div className={styles.productsTitle}>
+                <h2>منتجات المقايدة</h2>
+                <Link href={`/change`} className={styles.titleLink}>
+                  <span>عرض الكل</span>
+                  <span><IoIosArrowBack/></span>
+                </Link>
+              </div>
+              <Swiper
+                modules={[Navigation]}
+                spaceBetween={80}
+                slidesPerView={1.5}
+                navigation
+                breakpoints={{
+                  640: {slidesPerView: 2},
+                  768: {slidesPerView: 3},
+                  1024: {slidesPerView: 4}
+                }}
+                className={styles.swiper}
+              >
+                {userProducts.map(product => {
+                  return(
+                    <SwiperSlide className={styles.swiperSlider} key={product.id}>
+                  <div className="card">
+                    <div className="cardHead">
+                      <Image src={product.image} fill style={{objectFit: "cover"}}  alt="logoImgae"/>
+                    </div>
+                    <div className="cardBody">
+                      <div className="bodyText">
+                        <Link href={`/changeInfo/${encodeURIComponent(product.id)}`} className={styles.cardLink}>
+                          <p>{product.name}</p>
+                        </Link>
+                      </div>
+                      <ChangeBtn/>
+                    </div>
+                  </div>
+              </SwiperSlide>
+                  )
+                })}
+              </Swiper>
           </section>
           {sections.map(section => {
             return(
@@ -234,48 +273,7 @@ export default function Home() {
             </section>
             )
           })}
-          <section className={styles.products}>
-              <div className={styles.productsTitle}>
-                <h2>منتجات التبادل</h2>
-                <Link href={`/change`} className={styles.titleLink}>
-                  <span>عرض الكل</span>
-                  <span><IoIosArrowBack/></span>
-                </Link>
-              </div>
-              <Swiper
-                modules={[Navigation]}
-                spaceBetween={80}
-                slidesPerView={1.5}
-                navigation
-                breakpoints={{
-                  640: {slidesPerView: 2},
-                  768: {slidesPerView: 3},
-                  1024: {slidesPerView: 4}
-                }}
-                className={styles.swiper}
-              >
-                {userProducts.map(product => {
-                  return(
-                    <SwiperSlide className={styles.swiperSlider} key={product.id}>
-                  <div className="card">
-                    <div className="cardHead">
-                      <Image src={product.image} fill style={{objectFit: "cover"}}  alt="logoImgae"/>
-                    </div>
-                    <div className="cardBody">
-                      <div className="bodyText">
-                        <Link href={`/changeInfo/${encodeURIComponent(product.id)}`} className={styles.cardLink}>
-                          <p>{product.name}</p>
-                        </Link>
-                        <strong>{product.price} جنية</strong>
-                      </div>
-                      <ChangeBtn/>
-                    </div>
-                  </div>
-              </SwiperSlide>
-                  )
-                })}
-              </Swiper>
-          </section>
+
           <section className={styles.imagesContainer}>
             <div className={styles.imagesTitle}>
               <h2>نحن نغطي كل احتياجاتك من الصيدلية</h2>
@@ -349,10 +347,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -364,10 +358,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -379,10 +369,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -394,10 +380,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -409,10 +391,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -424,10 +402,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -439,10 +413,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -454,10 +424,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -469,10 +435,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -484,10 +446,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -499,10 +457,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -514,10 +468,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -529,10 +479,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -544,10 +490,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.swiperSlider}>
@@ -559,10 +501,6 @@ export default function Home() {
                       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus deleniti eum alias, magnam corrupti hic vitae, nisi, ea quia tempore dignissimos exercitationem animi ipsum adipisci necessitatibus quibusdam ab quas error!</p>
                     </div>
                     <hr />
-                    <div className={styles.cardBody}>
-                      <h2>mahmoud hisham</h2>
-                      <p>29/3/2025</p>
-                    </div>
                   </div>
                 </SwiperSlide>
               </Swiper>
