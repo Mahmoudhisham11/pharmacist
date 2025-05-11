@@ -1,7 +1,7 @@
 "use client";
 
-import Header from "@/app/components/Header/page";
-import Nav from "@/app/components/Nav/page";
+import Header from "@/components/Header/page";
+import Nav from "@/components/Nav/page";
 import { useEffect, useState } from "react";
 import { db } from "@/app/firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -9,8 +9,8 @@ import styles from "./styles.module.css";
 import Image from "next/image";
 import { IoMdClock } from "react-icons/io";
 import { GiShop } from "react-icons/gi";
-import Footer from "@/app/components/Footer/page";
-import CartBtn from "@/app/components/CartBtn/page";
+import Footer from "@/components/Footer/page";
+import CartBtn from "@/components/CartBtn/page";
 
 function ProductInfo({params}) {
     const [openNav, setOpenNav] = useState(false)
@@ -34,27 +34,27 @@ function ProductInfo({params}) {
                 return(
                 <div className={styles.ProductContainer} key={product.id}>
                     <div className={styles.imageContainer}>
-                        <Image src={product.image} fill style={{objectFit: "cover"}} alt="product image"/>
+                        <Image src={product.image} width={300} height={300} alt="product image"/>
                     </div>
                     <div className={styles.productInfo}>
                         <h2>{product.name}</h2>
-                        <p>السعر: <strong>{product.price} جنية</strong></p>
+                        <p>Price: <strong>{product.price} EGP</strong></p>
                     </div>
                     <div className={styles.informations}>
                         <div className={styles.infoItems}>
                             <p>
                                 <span><IoMdClock/></span>
-                                <span>زمن التوصيل :</span>
+                                <span>Delivery Time : </span>
                             </p>
-                            <strong>في خلال ساعة الى ساعتين</strong>
+                            <strong>Within One To Two Hours</strong>
                         </div>
                         <hr />
                         <div className={styles.infoItems}>
                             <p>
                                 <span><GiShop/></span>
-                                <span>يباع بواسطة :</span>
+                                <span>Sold By : </span>
                             </p>
-                            <strong>أقرب صيدلية</strong>
+                            <strong>The Nearest Pharmacy</strong>
                         </div>
                     </div>
                     <CartBtn product={product}/>

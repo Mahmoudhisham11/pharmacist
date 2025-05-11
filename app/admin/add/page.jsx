@@ -1,7 +1,5 @@
 "use client";
-import Header from "@/app/components/Header/page";
 import styles from "./styles.module.css";
-import Nav from "@/app/components/Nav/page";
 import Link from "next/link";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { MdKeyboardArrowLeft } from "react-icons/md";
@@ -15,7 +13,7 @@ function Add() {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [type, setType] = useState('الادوية')
+    const [type, setType] = useState('Medicines')
 
     const  handleUploadImage = async(event) => {
         const file = event.target.files[0]
@@ -41,62 +39,63 @@ function Add() {
                 type,
                 image,
             })
-            alert("تم اضافة المنتج بنجاح")
+            alert("The product has been successfully added")
             setName("")
             setDescription("")
             setPrice("")
-            setType("الادوية")
+            setType("Medicines")
         }else {
-            alert("حدث خطاء اثناء اضافة المنتج")
+            alert("An error occured while adding the product")
         }
     }
 
     return(
         <div className="main">
             <header className={styles.header}>
-                <div className={styles.rightSide}>
-                    <Link href={"/"} onClick={() => typeof window !== "undefined" ? localStorage.removeItem("email") : ""} className={styles.headerLink}><RiLogoutCircleLine/></Link>
-                </div>
-                <div className={styles.middleSide}>
-                    <h2>اضف منتج جديد</h2>
-                </div>
                 <div className={styles.leftSide}>
                     <Link href={"/admin/products"} className={styles.headerLink}><MdKeyboardArrowLeft/></Link>
                 </div>
+                <div className={styles.middleSide}>
+                    <h2>Add New Product</h2>
+                </div>
+                <div className={styles.rightSide}>
+                    <Link href={"/"} onClick={() => typeof window !== "undefined" ? localStorage.removeItem("email") : ""} className={styles.headerLink}><RiLogoutCircleLine/></Link>
+                </div>
+
             </header>
             <div className={styles.addContent}>
                 <div className={styles.imageInput}>
                     <label htmlFor="productImage">
                         <span><FaImage/></span>
-                        <span>اضف صورة المنتج</span>
+                        <span>Add Product's Image</span>
                     </label>
                     <input type="file" id="productImage" hidden onChange={handleUploadImage} />
                 </div>
                 <div className="inputContainer">
-                    <label>اسم المنتج :</label>
-                    <input value={name} type="text" onChange={(e) => setName(e.target.value)}/>
+                    <label>Name : </label>
+                    <input value={name} type="text" onChange={(e) => setName(e.target.value)} placeholder="Add Product Name"/>
                 </div>
                 <div className="inputContainer">
-                    <label>وصف المنتج :</label>
-                    <input value={description} type="text" onChange={(e) => setDescription(e.target.value)}/>
+                    <label>Description</label>
+                    <input value={description} type="text" onChange={(e) => setDescription(e.target.value)} placeholder="Add Product Description"/>
                 </div>
                 <div className="inputContainer">
-                    <label>سعر المنتج :</label>
-                    <input value={price} type="number" onChange={(e) => setPrice(e.target.value)}/>
+                    <label>Price : </label>
+                    <input value={price} type="number" onChange={(e) => setPrice(e.target.value)} placeholder="Add Product Price"/>
                 </div>
                 <div className="inputContainer">
-                    <label>تصنيف المنتج :</label>
+                    <label>Collection : </label>
                     <select value={type} onChange={(e) => setType(e.target.value)}>
-                        <option value="الادوية">الادوية</option>
-                        <option value="العناية بالبشرة">العناية بالبشرة</option>
-                        <option value="العناية بالشعر">العناية بالشعر</option>
-                        <option value="العناية اليومية">العناية اليومية</option>
-                        <option value="الام و الطفل">الام و الطفل</option>
-                        <option value="المكياج و الاكسسوارات">المكياج و الاكسسوارات</option>
-                        <option value="الفيتامينات و المكملات">الفيتامينات و المكملات</option>
+                        <option value="Medicines">Medicines</option>
+                        <option value="Hair Care">Hair Care</option>
+                        <option value="Skin Care">Skin Care</option>
+                        <option value="Baby Food">Baby Food</option>
+                        <option value="Makeup">Makeup</option>
+                        <option value="Supplements">Supplements</option>
+                        <option value="Deals">Deals</option>
                     </select>
                 </div>
-                <button className={styles.addBtn} onClick={handleAddProduct}>اضف المنتج</button>
+                <button className={styles.addBtn} onClick={handleAddProduct}>Add Product</button>
             </div>
         </div>
     )

@@ -37,7 +37,7 @@ function UserAdd({params}) {
                 image,
                 email: userEmail
             })
-            alert("تم اضافة المنتج بنجاح")
+            alert("Product has been added successfully")
             setName("")
             setDescription("")
         }
@@ -46,33 +46,33 @@ function UserAdd({params}) {
     return(
         <div className="main">
             <header className={styles.header}>
-                <div className={styles.rightSide}>
-                    <Link href={"/"} onClick={() => typeof window !== "undefined" ? localStorage.removeItem("email") : ""} className={styles.headerLink}><RiLogoutCircleLine/></Link>
-                </div>
-                <div className={styles.middleSide}>
-                    <h2>اضف منتج للتبادل</h2>
-                </div>
                 <div className={styles.leftSide}>
                     <Link href={`/user/${encodeURIComponent(userEmail)}`} className={styles.headerLink}><MdKeyboardArrowLeft/></Link>
+                </div>
+                <div className={styles.middleSide}>
+                    <h2>Add New Product</h2>
+                </div>
+                <div className={styles.rightSide}>
+                    <Link href={"/"} onClick={() => typeof window !== "undefined" ? localStorage.removeItem("email") : ""} className={styles.headerLink}><RiLogoutCircleLine/></Link>
                 </div>
             </header>
             <div className={styles.addContent}>
                 <div className={styles.imageInput}>
                     <label htmlFor="productImage">
                         <span><FaImage/></span>
-                        <span>اضف صورة المنتج</span>
+                        <span>Add product Image</span>
                     </label>
                     <input type="file" id="productImage" hidden onChange={handleUploadImage} />
                 </div>
                 <div className="inputContainer">
-                    <label>اسم المنتج :</label>
-                    <input value={name} type="text" onChange={(e) => setName(e.target.value)}/>
+                    <label>Name : </label>
+                    <input value={name} type="text" onChange={(e) => setName(e.target.value)} placeholder="Product Name"/>
                 </div>
                 <div className="inputContainer">
-                    <label>وصف المنتج :</label>
-                    <input value={description} type="text" onChange={(e) => setDescription(e.target.value)}/>
+                    <label>Description</label>
+                    <input value={description} type="text" onChange={(e) => setDescription(e.target.value)} placeholder="Product Description"/>
                 </div>
-                <button className={styles.addBtn} onClick={handleAddProduct}>اضف المنتج</button>
+                <button className={styles.addBtn} onClick={handleAddProduct}>Add New Product</button>
             </div>
         </div>
     )

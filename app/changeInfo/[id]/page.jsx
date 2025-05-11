@@ -1,15 +1,15 @@
 "use client";
 import styles from "./styles.module.css";
-import Header from "@/app/components/Header/page";
-import Nav from "@/app/components/Nav/page";
 import { useEffect, useState } from "react";
 import { db } from "@/app/firebase";
 import { collection, doc, getDoc } from "firebase/firestore";
 import Image from "next/image";
 import { IoMdClock } from "react-icons/io";
 import { GiShop } from "react-icons/gi";
-import Footer from "@/app/components/Footer/page";
-import ChangeBtn from "@/app/components/ChangeBtn/page";
+import Nav from "@/components/Nav/page";
+import Header from "@/components/Header/page";
+import Footer from "@/components/Footer/page";
+import ChangeBtn from "@/components/ChangeBtn/page";
 
 function ChangeInfo({params}) {
     const [openNav, setOpenNav] = useState(false)
@@ -33,11 +33,11 @@ function ChangeInfo({params}) {
                 return(
                 <div className={styles.ProductContainer} key={product.id}>
                     <div className={styles.imageContainer}>
-                        <Image src={product.image} fill style={{objectFit: "cover"}} alt="product image"/>
+                        <Image src={product.image} width={300} height={300} alt="product image"/>
                     </div>
                     <div className={styles.productInfo}>
                         <h2>{product.name}</h2>
-                        <p>الوصف: <strong>{product.description}</strong></p>
+                        <p>Descreption: <strong>{product.description}</strong></p>
                     </div>
                     <ChangeBtn/>
                 </div>

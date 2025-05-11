@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1C82AD;
+    background-color: var(--darck-green);
     padding: 0 2%;
 }
 .headerLink {
@@ -18,12 +18,12 @@
 }
 .addContent {
     width: 100%;
-    min-height: calc(100vh - 80px);
+    height: fit-content;
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    padding: 30px 0;
+    padding: 30px 2%;
 }
 .imageInput {
     width: 100%;
@@ -47,11 +47,11 @@
     cursor: pointer;
 }
 .addBtn {
-    width: 80%;
+    width: 100%;
     color: white;
-    background-color: black;
+    background-color: var(--darck-green);
     border: none;
-    border-radius: 8px;
+    border-radius: 28px;
     font-size: 25px;
     padding: 5px;
     cursor: pointer;

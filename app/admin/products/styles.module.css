@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1C82AD;
+    background-color: var(--darck-green);
     padding: 0 2%;
 }
 .headerLink {
@@ -16,22 +16,22 @@
     font-size: 30px;
     color: white;
 }
-.productsContent {
+.categorie {
     width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-    padding: 30px 2%;
+    height: fit-content;
+    padding: 50px 2%;
+}
+.title h2 {
+    font-size: 35px;
+    color: #333;
 }
 .btn {
-    width: 80%;
+    width: 40%;
     border: none;
-    font-size: 25px;
     color: white;
     background-color: red;
-    border-radius: 8px;
+    padding: 5px;
+    border-radius: 28px;
     cursor: pointer;
 }
 .addBtn {
@@ -39,7 +39,7 @@
     position: fixed;
     bottom: 50px;
     right: 30px;
-    background-color: #03C988;
+    background-color: var(--darck-green);
     color: white;
     font-size: 25px;
     padding: 5px;
@@ -48,6 +48,7 @@
     align-items: center;
     gap: 5px;
     border-radius: 8px;
+    z-index: 1;
 }
 
 @media(max-width: 767px) {

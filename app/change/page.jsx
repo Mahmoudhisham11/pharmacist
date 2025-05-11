@@ -1,15 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import Nav from "../components/Nav/page";
-import Header from "../components/Header/page";
-import CartBtn from "../components/CartBtn/page";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "../components/Footer/page";
-import ChangeBtn from "../components/ChangeBtn/page";
+import Footer from "@/components/Footer/page";
+import ChangeBtn from "@/components/ChangeBtn/page";
+import Nav from "@/components/Nav/page";
+import Header from "@/components/Header/page";
 
 function Change() {
     const [openNav, setOpenNav] = useState(false)
@@ -30,23 +29,22 @@ function Change() {
             <Header openNav={openNav} setOpenNav={setOpenNav}/>
             <section className={styles.categorySction}>
                 <div className={styles.categoryTitle}>
-                    <h2>منتجات التبادل</h2>
+                    <h2>Exchange Products</h2>
                 </div>
                 <div className={styles.categoryContent}>
                     {changeData.map(product => {
                         return(
-                            <div className="card" key={product.id}>
+                            <div className="card">
                                 <div className="cardHead">
-                                    <Image src={product.image} fill style={{objectFit: "cover"}} alt="product-image" />
+                                    <Link href={`/changeInfo/${encodeURIComponent(product.id)}`}>
+                                        <Image src={product.image} alt="testImage" fill style={{objectFit: "cover"}} />
+                                    </Link>
                                 </div>
                                 <div className="cardBody">
-                                    <div className="bodyText">
-                                        <Link href={`/changeInfo/${encodeURIComponent(product.id)}`} style={{color: "black", textDecoration: "none"}}>
-                                            <p>{product.name}</p>
-                                        </Link>
-                                        <strong>{product.price} جنية</strong>
+                                    <p>{product.name}</p>
+                                    <div className="cardContent">
+                                        <ChangeBtn/>
                                     </div>
-                                    <ChangeBtn/>
                                 </div>
                             </div>
                         )

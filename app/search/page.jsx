@@ -14,16 +14,15 @@ import { GrNotes } from "react-icons/gr";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import CartBtn from "../components/CartBtn/page";
-import Footer from "../components/Footer/page";
+import CartBtn from "../../components/CartBtn/page";
+import Footer from "../../components/Footer/page";
 
 function Search() {
     const [login, setLogin] = useState(false) 
     const [userEmail, setUserEmail] = useState('')
     const [products, setProducts] = useState([])
     const [filterd, setFilterd] = useState([])
-    const [search, setSearch] = useState('')
-    
+    const [search, setSearch] = useState('')    
     useEffect(() => {
         if(typeof window !== "undefined") {
             const email = localStorage.getItem("email")
@@ -51,82 +50,95 @@ function Search() {
 
     return(
         <div className="main">
-        <div className={styles.headerContainer}>
-            <div className={styles.banner}>
-                <Link href="/" className={styles.bannerText}>
-                    <span><IoLocationSharp/></span>
-                    <span>تحديد الموقع معطل.. برجاء اضغط هنا لتفعيله قبل اختيار المنتجات </span>
-                </Link>
-                <p><IoIosArrowBack/></p>
-            </div>
-            <header className={styles.header}>
-                <div className={styles.rightSide}>
-                    <div className={styles.logoContainer}>
-                        <Image src={logoImage} className={styles.logoImage} alt="LogoImage"/>
-                        <Link href="/" className={styles.logo}>صيدلاني</Link>
+            <div className={styles.header}>
+                <div className={styles.headerContainer}>
+                    <div className={styles.leftSide}>
+                        <div className={styles.logoInfo}>
+                            <div className={styles.logoImage}>
+                                <Image src={logoImage} fill  style={{objectFit: "cover"}} alt="logoImage" />
+                            </div>
+                            <Link href={"/"} className={styles.logoLink}>pharmacist</Link>
+                            <p> | </p>
+                        </div>
+                        <div className={styles.mobileIcons}>
+                            {login ? 
+                                <Link href={userEmail === 'admin' ? "/admin/products" : `/user/${encodeURIComponent(userEmail)}`} className={styles.headerLinks}>
+                                    <span><GrNotes/></span>
+                                </Link>
+                                :
+                                <Link href={"/login"} className={styles.headerLinks}>
+                                    <span><BsPerson/></span>
+                                </Link>
+                            }
+                            <Link href={"/cart"} className={styles.headerLinks}>
+                                <span><LuShoppingCart/></span>
+                            </Link>
+                        </div>
                     </div>
-                    <div className={styles.mobileIcons}>
-                        <Link href="/" className={styles.mobileLinks}><IoMdHeartEmpty/></Link>
-                        <Link href="/cart" className={styles.mobileLinks}><LuShoppingCart/></Link>
-                    </div>
-                </div>
-                <div className={styles.container}>
                     <div className={styles.middleSide}>
-                        <p><CiSearch  /></p>
-                        <input list="products" placeholder="ابحث عن المنتج" onChange={(e) => setSearch(e.target.value)}/>
-                        <datalist id="products">
-                            {products.map(product => {
-                                return(
-                                    <option key={product.id} value={product.name}/>
-                                )
-                            })}
-                        </datalist>
+                        <input list="products" placeholder="Search here for your product" onChange={(e) => setSearch(e.target.value)}/>
+                            <datalist id="products">
+                                {products.map(product => {
+                                    return(
+                                        <option key={product.id} value={product.name} />
+                                    )
+                                })}
+                            </datalist>
+                        <p><CiSearch/></p>
+                    </div>
+                    <div className={styles.container}>
+                        <div className={styles.inputContainer}>
+                            <input list="products"  placeholder="Search here for your product" onChange={(e) => setSearch(e.target.value)}/>
+                            <datalist id="products">
+                                {products.map(product => {
+                                    return(
+                                        <option key={product.id} value={product.name} />
+                                    )
+                                })}
+                            </datalist>
+                            <p><CiSearch/></p>
+                        </div>
+                    </div>
+                    <div className={styles.rightSide}>
+                        {login ? 
+                            <Link href={userEmail === 'admin' ? "/admin/products" : `/user/${encodeURIComponent(userEmail)}`} className={styles.headerLinks}>
+                                <span><GrNotes/></span>
+                                <span>account</span>
+                            </Link>
+                            :
+                            <Link href={"/login"} className={styles.headerLinks}>
+                                <span><BsPerson/></span>
+                                <span>login</span>
+                            </Link>
+                        }
+                        <Link href={"/cart"} className={styles.headerLinks}>
+                            <span><LuShoppingCart/></span>
+                            <span>cart</span>
+                        </Link>
                     </div>
                 </div>
-                <div className={styles.leftSide}>
-                    {login ? 
-                        <Link href={userEmail === "admin" ? `/admin/products` : `/user/${encodeURIComponent(userEmail)}`} className={styles.link}>
-                            <span><GrNotes/></span>
-                            <span>الملف الشخصي</span>
-                        </Link>
-                            :
-                        <Link href="/login" className={styles.link}>
-                            <span><BsPerson/></span>
-                            <span>تسجيل الدخول</span>
-                        </Link> 
-                    }
-                    <Link href="/" className={styles.link}>
-                        <span><IoMdHeartEmpty/></span>
-                        <span>المفضلة</span>
-                    </Link>
-                    <Link href="/cart" className={styles.link}>
-                        <span><LuShoppingCart/></span>
-                        <span>السلة</span>
-                    </Link> 
-                </div>
-            </header>
-        </div>
-        <div className={styles.searchContent}>
-            {filterd.map(product => {
-                return(
-                    <div className="card" key={product.id}>
+            </div>
+            <div className={styles.searchContent}>
+                {filterd.map(product => {
+                    return(
+                        <div className="card">
                         <div className="cardHead">
-                            <Image src={product.image} fill style={{objectFit: "cover"}} alt="product-image" />
+                            <Link href={`/info/${encodeURIComponent(product.id)}`}>
+                                <Image src={product.image} alt="ProductImage" width={150} height={150} />
+                            </Link>
                         </div>
                         <div className="cardBody">
-                            <div className="bodyText">
-                                <Link href={`/info/${encodeURIComponent(product.id)}`} style={{color: "black", textDecoration: "none"}}>
-                                    <p>{product.name}</p>
-                                </Link>
-                                <strong>{product.price} جنية</strong>
+                            <p>{product.name}</p>
+                            <div className="cardContent">
+                                <CartBtn product={product}/>
+                                <strong>EGP {product.price}</strong>
                             </div>
-                            <CartBtn product={product}/>
                         </div>
                     </div>
-                )
-            })}
-        </div>
-        <Footer/>
+                    )
+                })}
+            </div>
+            <Footer/>
         </div>
     )
 }

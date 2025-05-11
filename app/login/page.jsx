@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import Header from "../components/Header/page";
-import Nav from "../components/Nav/page";
+import Header from "../../components/Header/page";
+import Nav from "../../components/Nav/page";
 import styles from "./styles.module.css";
 import Link from "next/link";
-import Footer from "../components/Footer/page";
+import Footer from "../../components/Footer/page";
 import { useRouter } from "next/navigation";
 import { db } from "../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -19,12 +19,12 @@ function Login() {
         const q = query(collection(db, "users"), where("email", "==", email))
         const querySnapshot = await getDocs(q)
         if(querySnapshot.empty) {
-            alert("يوجد مشكلة في البريد الالكتروني")
+            alert("There is a problem with the email")
         }else {
             const userDoc = querySnapshot.docs[0]
             const userData = userDoc.data()
             if(userData.password !== password) {
-                alert("كلمة المرور غير صحيحة")
+                alert("Password is invalid")
             }else {
                 if(typeof window !== "undefined") {
                     localStorage.setItem("name", userData.userName)
@@ -46,16 +46,19 @@ function Login() {
             <Header openNav={openNav} setOpenNav={setOpenNav}/>
             <div className="formContent">
                 <div className="inputContainer">
-                    <label>البريد الالكتروني :</label>
-                    <input type="text" onChange={(e) => setEmail(e.target.value)}/>
+                    <label>Email : </label>
+                    <input type="text" onChange={(e) => setEmail(e.target.value)} placeholder="Enter Your Email"/>
                 </div>
                 <div className="inputContainer">
-                    <label>كلمة المرور :</label>
-                    <input type="password" onChange={(e) => setPassword(e.target.value)}/>
+                    <label>Password : </label>
+                    <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Enter Your Password"/>
                 </div>
                 <div className={styles.btnContainer}>
-                    <button onClick={handleLogin}>تجسيل الدخول</button>
-                    <Link href={"/create"} className={styles.btn}>انشاء حساب جديد</Link>
+                    <button onClick={handleLogin}>Login</button>
+                    <Link href={"/create"} className={styles.btn}>
+                        <span>Don't Have Acccount? </span>
+                        <span>create new account</span>
+                    </Link>
                 </div>
             </div>
             <Footer/>

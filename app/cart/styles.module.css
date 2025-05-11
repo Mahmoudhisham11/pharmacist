@@ -1,6 +1,6 @@
 .cartContent {
     width: 100%;
-    min-height: calc(100vh - 165px);
+    min-height: calc(100vh - 100px);
     background-color: #cececefa;
     padding: 30px 2%;
     display: flex;
@@ -132,12 +132,12 @@
     gap: 15px;
 }
 .shopText h2 {
-    color: black;
+    color: #333;
 }
 .shopText .shopLink {
     text-decoration: none;
     color: white;
-    background-color: #38b98e;
+    background-color: var(--darck-green);
     font-size: 20px;
     padding: 5px;
     border-radius: 8px;

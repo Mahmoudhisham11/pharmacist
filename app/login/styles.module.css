@@ -6,24 +6,30 @@
     flex-direction: column;
     gap: 15px;
 }
-.btnContainer button:first-child {
-    width: 80%;
+.btnContainer button{
+    width: 100%;
     padding: 5px;
     font-size: 25px;
     cursor: pointer;
-    background-color: black;
+    background-color: var(--darck-green);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 28px;
 }
 .btn {
     text-align: center;
-    text-decoration: none;
     width: 80%;
     padding: 5px;
-    font-size: 25px;
-    cursor: pointer;
     background-color: transparent;
-    border: none;
+}
+.btn span:first-child {
+    text-decoration: none;
+    font-size: 25px;
     color: black;
+}
+
+@media(max-width: 767px) {
+    .btn span:first-child {
+        font-size: 17px;
+    }
 }

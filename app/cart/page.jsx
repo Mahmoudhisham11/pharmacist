@@ -1,8 +1,8 @@
 "use client"; 
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import Header from "../components/Header/page";
-import Nav from "../components/Nav/page";
+import Header from "../../components/Header/page";
+import Nav from "../../components/Nav/page";
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -56,12 +56,12 @@ function Cart() {
             <Nav openNav={openNav} setOpenNav={setOpenNav}/>
             <div className={styles.cartContent}>
                 <div className={styles.title}>
-                    <h2>سلة التسوق</h2>
+                    <h2>Cart Page</h2>
                 </div>
                 {hasProducts ? 
                     <>
                         <div className={styles.productsContainer}>
-                            <h2>المنتجات</h2>
+                            <h2>Products</h2>
                                 {products.map(product => {
                                     return(
                                         <div className={styles.card} key={product.id}>
@@ -74,39 +74,39 @@ function Cart() {
                                             </div>
                                             <div className={styles.leftSide}>
                                                 <button className={styles.clearBtn} onClick={() => handleDeleteProduct(product.id)}><FaRegTrashCan/></button>
-                                                <strong>{product.price * (qty[product.id]?.productQty || 1)} جنية</strong>
+                                                <strong>{product.price * (qty[product.id]?.productQty || 1)} EGP</strong>
                                             </div>
                                         </div>
                                     )
                                 })}
                         </div>
                         <div className={styles.priceContainer}>
-                            <h2>ملخص الدفع</h2>
+                            <h2>Payment Summary</h2>
                             <div className={styles.priceInfo}>
                                 <div className={styles.topSide}>
                                     <div className={styles.text}>
-                                        <strong>المجموع الفرعي</strong>
-                                        <strong>{total} جنية</strong>
+                                        <strong>suptotal</strong>
+                                        <strong>{total} EGP</strong>
                                     </div>
                                     <div className={styles.text}>
-                                        <strong>رسوم التوصيل</strong>
-                                        <strong style={{color: "#0078ac"}}>10 جنية</strong>
+                                        <strong>Delivery</strong>
+                                        <strong style={{color: "#0078ac"}}>10 EGP</strong>
                                     </div>
                                 </div>
                                 <hr />
                                 <div className={styles.bottomSide}>
-                                    <h2>الاجمالي : {total + 10}</h2>
+                                    <h2>Total : {total + 10}</h2>
                                 </div>
                             </div>
                         </div>
                         <div className={styles.btn}>
-                            <button>اتمام العملية</button>
+                            <button>Completing The Process</button>
                         </div>
                     </>
                     :
                     <div className={styles.shopText}>
-                        <h2>عربة التسوق فارغة</h2>
-                        <Link href={"/"} className={styles.shopLink}>اكمل التسوق</Link>
+                        <h2>The Shopping Cart Is Empty</h2>
+                        <Link href={"/"} className={styles.shopLink}>Continue Shoping</Link>
                     </div>
                 }
             </div>

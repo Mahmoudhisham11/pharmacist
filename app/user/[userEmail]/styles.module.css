@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1C82AD;
+    background-color: var(--darck-green);
     padding: 0 2%;
 }
 .headerLink {
@@ -39,7 +39,7 @@
     position: fixed;
     bottom: 50px;
     right: 30px;
-    background-color: #03C988;
+    background-color: var(--darck-green);
     color: white;
     font-size: 25px;
     padding: 5px;
